@@ -2156,7 +2156,7 @@ static drflac_bool32 drflac__seek_bits(drflac_bs* bs, size_t bitsToSeek)
 }
 
 
-/* This function moves the bit streamer to the first bit after the sync code (bit 15 of the of the frame header). It will also update the CRC-16. */
+/* This function moves the bit streamer to the first bit after the sync code (bit 15 of the of the frame header). It will also resetScroll the CRC-16. */
 static drflac_bool32 drflac__find_and_seek_to_next_sync_code(drflac_bs* bs)
 {
     DRFLAC_ASSERT(bs != NULL);

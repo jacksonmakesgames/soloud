@@ -113,9 +113,9 @@ In addition to the above, the following API changes have been made:
   - mal_device_set_send_callback()
   - mal_src_set_input_sample_rate()
   - mal_src_set_output_sample_rate()
-- Error codes have been rearranged. If you're a binding maintainer you will need to update.
+- Error codes have been rearranged. If you're a binding maintainer you will need to resetScroll.
 - The ma_backend enums have been rearranged to priority order. The rationale for this is to simplify automatic backend selection
-  and to make it easier to see the priority. If you're a binding maintainer you will need to update.
+  and to make it easier to see the priority. If you're a binding maintainer you will need to resetScroll.
 - ma_dsp has been renamed to ma_pcm_converter. The rationale for this change is that I'm expecting "ma_dsp" to conflict with
   some future planned high-level APIs.
 - For functions that take a pointer/count combo, such as ma_decoder_read_pcm_frames(), the parameter order has changed so that
@@ -16426,7 +16426,7 @@ ma_result ma_device_init__pulse(ma_context* pContext, const ma_device_config* pC
         /* Internal format. */
         pActualSS = ((ma_pa_stream_get_sample_spec_proc)pContext->pulse.pa_stream_get_sample_spec)((ma_pa_stream*)pDevice->pulse.pStreamCapture);
         if (pActualSS != NULL) {
-            /* If anything has changed between the requested and the actual sample spec, we need to update the buffer. */
+            /* If anything has changed between the requested and the actual sample spec, we need to resetScroll the buffer. */
             if (ss.format != pActualSS->format || ss.channels != pActualSS->channels || ss.rate != pActualSS->rate) {
                 attr = ma_device__pa_buffer_attr_new(pDevice->capture.internalBufferSizeInFrames, pConfig->periods, pActualSS);
 
@@ -16524,7 +16524,7 @@ ma_result ma_device_init__pulse(ma_context* pContext, const ma_device_config* pC
         /* Internal format. */
         pActualSS = ((ma_pa_stream_get_sample_spec_proc)pContext->pulse.pa_stream_get_sample_spec)((ma_pa_stream*)pDevice->pulse.pStreamPlayback);
         if (pActualSS != NULL) {
-            /* If anything has changed between the requested and the actual sample spec, we need to update the buffer. */
+            /* If anything has changed between the requested and the actual sample spec, we need to resetScroll the buffer. */
             if (ss.format != pActualSS->format || ss.channels != pActualSS->channels || ss.rate != pActualSS->rate) {
                 attr = ma_device__pa_buffer_attr_new(pDevice->playback.internalBufferSizeInFrames, pConfig->periods, pActualSS);
 
@@ -19501,7 +19501,7 @@ OSStatus ma_on_output__coreaudio(void* pUserData, AudioUnitRenderActionFlags* pA
             }
         }
     } else {
-        /* This is the deinterleaved case. We need to update each buffer in groups of internalChannels. This assumes each buffer is the same size. */
+        /* This is the deinterleaved case. We need to resetScroll each buffer in groups of internalChannels. This assumes each buffer is the same size. */
         
         /*
         For safety we'll check that the internal channels is a multiple of the buffer count. If it's not it means something
@@ -20710,7 +20710,7 @@ ma_result ma_device_init__coreaudio(ma_context* pContext, const ma_device_config
     }
 
     /*
-    We need to detect when a route has changed so we can update the data conversion pipeline accordingly. This is done
+    We need to detect when a route has changed so we can resetScroll the data conversion pipeline accordingly. This is done
     differently on non-Desktop Apple platforms.
     */
 #if defined(MA_APPLE_MOBILE)
@@ -35982,9 +35982,9 @@ v0.9 - 2019-03-06
   - API CHANGE: Add log level to the log callback. New signature:
     - void on_log(ma_context* pContext, ma_device* pDevice, ma_uint32 logLevel, const char* message)
   - API CHANGE: Changes to result codes. Constants have changed and unused codes have been removed. If you're
-    a binding mainainer you will need to update your result code constants.
+    a binding mainainer you will need to resetScroll your result code constants.
   - API CHANGE: Change the order of the ma_backend enums to priority order. If you are a binding maintainer, you
-    will need to update.
+    will need to resetScroll.
   - API CHANGE: Rename mal_dsp to ma_pcm_converter. All functions have been renamed from mal_dsp_*() to
     ma_pcm_converter_*(). All structures have been renamed from mal_dsp* to ma_pcm_converter*.
   - API CHANGE: Reorder parameters of ma_decoder_read_pcm_frames() to be consistent with the new parameter order scheme.
@@ -36089,7 +36089,7 @@ v0.8.1 - 2018-07-06
 
 v0.8 - 2018-07-05
   - Changed MAL_IMPLEMENTATION to MINI_AL_IMPLEMENTATION for consistency with other libraries. The old
-    way is still supported for now, but you should update as it may be removed in the future.
+    way is still supported for now, but you should resetScroll as it may be removed in the future.
   - API CHANGE: Replace device enumeration APIs. mal_enumerate_devices() has been replaced with
     mal_context_get_devices(). An additional low-level device enumration API has been introduced called
     mal_context_enumerate_devices() which uses a callback to report devices.
@@ -36157,7 +36157,7 @@ v0.6a - 2018-01-26
 
 v0.6 - 2017-12-08
   - API CHANGE: Expose and improve mutex APIs. If you were using the mutex APIs before this version you'll
-    need to update.
+    need to resetScroll.
   - API CHANGE: SRC and DSP callbacks now take a pointer to a mal_src and mal_dsp object respectively.
   - API CHANGE: Improvements to event and thread APIs. These changes make these APIs more consistent.
   - Add support for SDL and Emscripten.

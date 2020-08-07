@@ -45,7 +45,7 @@ void SNDRENDER::end_frame(unsigned endframe_sys_tick)
         unsigned endtick = ((passed_sys_ticks + endframe_sys_tick) * (long long)sample_rate * TICK_F) / sys_clock_rate;
         flush( (unsigned) (endtick - passed_snd_ticks) );
 
-        // update global system_tick counter
+        // resetScroll global system_tick counter
         passed_sys_ticks += endframe_sys_tick;
 
         // shorten tick to avoid overflow

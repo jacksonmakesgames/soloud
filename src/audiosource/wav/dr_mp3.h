@@ -2850,7 +2850,7 @@ static drmp3_uint64 drmp3_read_src(drmp3_src* pSRC, drmp3_uint64 frameCount, voi
 
         /*
         At this point we have exhausted our in-memory buffer so we need to re-fill. Note that the sample rate may have changed
-        at this point which means we'll also need to update our sample rate conversion pipeline.
+        at this point which means we'll also need to resetScroll our sample rate conversion pipeline.
         */
         if (drmp3_decode_next_frame(pMP3) == 0) {
             break;
@@ -3473,7 +3473,7 @@ drmp3_bool32 drmp3_seek_to_pcm_frame__seek_table(drmp3* pMP3, drmp3_uint64 frame
     pMP3->currentPCMFrame = seekPoint.pcmFrameIndex - seekPoint.pcmFramesToDiscard;
 
     /*
-    Update resampler. This is wrong. Need to instead update it on a per MP3 frame basis. Also broken for cases when
+    Update resampler. This is wrong. Need to instead resetScroll it on a per MP3 frame basis. Also broken for cases when
     the sample rate is being reduced in my testing. Should work fine when the input and output sample rate is the same
     or a clean multiple.
     */

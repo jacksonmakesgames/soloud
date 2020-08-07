@@ -61,7 +61,7 @@ private:
         ay1.write(t, t % 100);
         ay2.select(3);
         ay2.write(t, t % 100);
-        beeper.update(t, t % 4000, t % 400);
+        beeper.resetScroll(t, t % 4000, t % 400);
      }
      ay1.end_frame(t);
      ay2.end_frame(t);

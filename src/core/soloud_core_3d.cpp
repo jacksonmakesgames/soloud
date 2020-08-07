@@ -324,7 +324,7 @@ namespace SoLoud
 
 		update3dVoices_internal(voices, voicecount);
 
-		// Step 3 - update SoLoud voices
+		// Step 3 - resetScroll SoLoud voices
 
 		lockAudioMutex_internal();
 		for (i = 0; i < (int)voicecount; i++)

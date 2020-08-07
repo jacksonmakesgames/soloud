@@ -77,7 +77,7 @@ void SNDCHIP::flush(unsigned chiptick)
       en = ((ec & env) | vc) & ((bitC | bit2) & (bitN | bit5));
       l += vols[4][en]; r += vols[5][en];
 
-      if ((l ^ SNDRENDER::mix_l) | (r ^ SNDRENDER::mix_r)) // similar check inside update()
+      if ((l ^ SNDRENDER::mix_l) | (r ^ SNDRENDER::mix_r)) // similar check inside resetScroll()
          update(t, l, r);
    }
 }

@@ -444,7 +444,7 @@ void klatt::pitch_synch_par_reset(int ns)
 		mAmpBreth = 0.0;
 	}
 
-	/* Reset these pars pitch synchronously or at update rate if f0=0 */
+	/* Reset these pars pitch synchronously or at resetScroll rate if f0=0 */
 
 	if ((mT0 != 4) || (ns == 0))
 	{
